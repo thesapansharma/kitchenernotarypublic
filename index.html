@@ -187,6 +187,15 @@
             text-transform: uppercase;
         }
 
+        .brand-subtag {
+            font-size: 0.58rem;
+            font-weight: 800;
+            color: #1e3a5f;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-top: 1px;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
@@ -781,6 +790,54 @@
             margin-top: 3.5rem;
         }
 
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: #ffffff !important;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12) rotate(6deg);
+            box-shadow: 0 14px 35px rgba(37, 211, 102, 0.65);
+            color: #ffffff !important;
+        }
+
+        .whatsapp-float .tooltip-text {
+            position: absolute;
+            right: 74px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 7px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateX(10px);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+        }
+
+        .whatsapp-float:hover .tooltip-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         /* Pricing Card */
         .pricing-card {
             border: none;
@@ -877,6 +934,31 @@
             resize: vertical;
             min-height: 120px;
             line-height: 1.6;
+        }
+
+        /* Validation Error Styling */
+        .form-control.is-invalid {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15), 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-top: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .error-msg::before {
+            content: '\f06a';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.78rem;
         }
 
         .sticky-form {
@@ -1076,6 +1158,7 @@
         </div>
         <div class="top-bar-info">
             <span><i class="fas fa-envelope"></i> <a href="mailto:kitchenernotary@hotmail.com" style="color:#ffffff; text-decoration:none;">kitchenernotary@hotmail.com</a></span>
+            <span><i class="fab fa-whatsapp" style="color: #25d366; font-size: 1rem;"></i> <a href="https://wa.me/19052261009" target="_blank" rel="noopener noreferrer" style="color:#ffffff; text-decoration:none; font-weight: 700;">WhatsApp: +1 905 226 1009</a></span>
             <span class="top-bar-badge"><i class="fas fa-shield-halved"></i> Licensed LSO Lawyers</span>
             <span><i class="fas fa-phone"></i> Call <a href="tel:+12892727941" style="color: #ffffff; font-weight: 700; text-decoration: underline;">+1 289 272 7941</a> or <a href="tel:+12266675705" style="color: #ffffff; font-weight: 700; text-decoration: underline;">226 667 5705</a></span>
         </div>
@@ -1089,6 +1172,7 @@
                 <div class="logo-text">
                     <span class="brand-name">KITCHENER NOTARY</span>
                     <span class="brand-tag">PUBLIC &amp; COMMISSIONER FOR OATHS</span>
+                    <span class="brand-subtag">WALK-IN / NO APPOINTMENT NEEDED</span>
                 </div>
             </a>
             <button class="hamburger"><i class="fas fa-bars"></i></button>
@@ -1301,7 +1385,7 @@
             <div class="section-header">
                 <h2>Contact Us</h2>
             </div>
-            <div class="grid-3 mb-2">
+            <div class="grid-4 mb-2">
                 <div class="glass-card text-center" style="text-align: center;">
                     <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--gold-main); margin-bottom: 1rem;"></i>
                     <h3>Address</h3>
@@ -1316,6 +1400,11 @@
                     <i class="fas fa-phone" style="font-size: 2.5rem; color: var(--gold-main); margin-bottom: 1rem;"></i>
                     <h3>Phone</h3>
                     <p><a href="tel:+12892727941" style="color: #0f172a; font-weight: 700; text-decoration: none;">+1 (289) 272-7941</a><br><a href="tel:+12266675705" style="color: #0f172a; font-weight: 700; text-decoration: none;">+1 (226) 667-5705</a></p>
+                </div>
+                <div class="glass-card text-center" style="text-align: center;">
+                    <i class="fab fa-whatsapp" style="font-size: 2.5rem; color: #25d366; margin-bottom: 1rem;"></i>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/19052261009" target="_blank" rel="noopener noreferrer" style="color: #25d366; font-weight: 700; text-decoration: none;">+1 (905) 226-1009</a></p>
                 </div>
             </div>
             
@@ -1536,7 +1625,7 @@
             
             <div class="glass-card pricing-card text-center" style="text-align: center;">
                 <h3>IN-PERSON OR ONLINE NOTARY PUBLIC</h3>
-                <div class="price-tag">$29.95</div>
+                <div class="price-tag">$30</div>
                 <p style="margin-bottom: 2rem; color: var(--text-offwhite);">Notarizations/Certifications/Legalizations/ Commissioning of documents</p>
                 
                 <ul class="bullet-list" style="text-align: left; margin-bottom: 2rem; display: inline-block;">
@@ -2200,10 +2289,10 @@
                 function update() {
                     start += step;
                     if (start >= target) {
-                        el.textContent = '$' + target.toFixed(2);
+                        el.textContent = '$' + target;
                         return;
                     }
-                    el.textContent = '$' + start.toFixed(2);
+                    el.textContent = '$' + Math.floor(start);
                     requestAnimationFrame(update);
                 }
                 update();
@@ -2214,7 +2303,7 @@
                 const priceObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            animateCounter(priceTag, 29.95, 1200);
+                            animateCounter(priceTag, 30, 1000);
                             priceObserver.unobserve(entry.target);
                         }
                     });
@@ -2222,7 +2311,7 @@
                 priceObserver.observe(priceTag);
             }
 
-            // Automatic Mailto Form Handler for kitchenernotary@hotmail.com
+            // Form Validation & Mailto Handler
             document.querySelectorAll('form').forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -2238,7 +2327,77 @@
                 }
             });
 
+            function validateForm(form) {
+                let isValid = true;
+
+                // Remove existing error elements and invalid classes
+                form.querySelectorAll('.error-msg').forEach(el => el.remove());
+                form.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-invalid'));
+
+                const nameEl = form.querySelector('input[placeholder*="Name"]');
+                const phoneEl = form.querySelector('input[placeholder*="Phone"]');
+                const emailEl = form.querySelector('input[placeholder*="Email"]');
+                const msgEl = form.querySelector('textarea');
+
+                // Validate Name
+                if (nameEl && (!nameEl.value.trim() || nameEl.value.trim().length < 2)) {
+                    showFieldError(nameEl, 'Please enter your full name');
+                    isValid = false;
+                }
+
+                // Validate Phone Number
+                if (phoneEl) {
+                    const digits = phoneEl.value.replace(/\D/g, '');
+                    if (!phoneEl.value.trim() || digits.length < 7) {
+                        showFieldError(phoneEl, 'Please enter a valid phone number');
+                        isValid = false;
+                    }
+                }
+
+                // Validate Email Address
+                if (emailEl) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailEl.value.trim() || !emailPattern.test(emailEl.value.trim())) {
+                        showFieldError(emailEl, 'Please enter a valid email address');
+                        isValid = false;
+                    }
+                }
+
+                // Validate Message
+                if (msgEl && (!msgEl.value.trim() || msgEl.value.trim().length < 4)) {
+                    showFieldError(msgEl, 'Please enter your message');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            function showFieldError(inputEl, message) {
+                inputEl.classList.add('is-invalid');
+                const formGroup = inputEl.closest('.form-group') || inputEl.parentElement;
+                let errSpan = formGroup.querySelector('.error-msg');
+                if (!errSpan) {
+                    errSpan = document.createElement('span');
+                    errSpan.className = 'error-msg';
+                    formGroup.appendChild(errSpan);
+                }
+                errSpan.textContent = message;
+
+                // Clear error dynamically as user types
+                inputEl.addEventListener('input', function onInput() {
+                    if (inputEl.value.trim()) {
+                        inputEl.classList.remove('is-invalid');
+                        if (errSpan) errSpan.remove();
+                        inputEl.removeEventListener('input', onInput);
+                    }
+                });
+            }
+
             function sendMailto(form) {
+                if (!validateForm(form)) {
+                    return;
+                }
+
                 const nameEl = form.querySelector('input[placeholder*="Name"]');
                 const phoneEl = form.querySelector('input[placeholder*="Phone"]');
                 const emailEl = form.querySelector('input[placeholder*="Email"]');
@@ -2250,11 +2409,6 @@
                 const email = emailEl ? emailEl.value.trim() : '';
                 const rawSubject = (subjectEl && subjectEl.value.trim()) ? subjectEl.value.trim() : 'Kitchener Notary Inquiry';
                 const message = msgEl ? msgEl.value.trim() : '';
-
-                if (!name && !email && !message) {
-                    alert('Please fill out your Name and Message before sending.');
-                    return;
-                }
 
                 const mailtoRecipient = 'kitchenernotary@hotmail.com';
                 const emailSubject = encodeURIComponent(`Notary Inquiry: ${rawSubject}`);
@@ -2275,9 +2429,17 @@
 
                 setTimeout(() => {
                     form.reset();
+                    form.querySelectorAll('.error-msg').forEach(el => el.remove());
+                    form.querySelectorAll('.form-control').forEach(el => el.classList.remove('is-invalid'));
                 }, 800);
             }
         });
     </script>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/19052261009" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="tooltip-text">Chat on WhatsApp (+1 905 226 1009)</span>
+    </a>
 </body>
 </html>
