@@ -364,8 +364,8 @@
             margin: 0 auto;
         }
         .spa-section.active {
-            display: block !important;
-            opacity: 1 !important;
+            display: block;
+            opacity: 1;
         }
 
         /* Hero Banner - 100% Full Width */
@@ -1924,110 +1924,111 @@
 
     <!-- INLINE JAVASCRIPT -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- SPA Navigation Engine ---
+        // --- Bulletproof SPA Navigation Engine ---
+        function navigateToSection(targetHash) {
+            let hash = targetHash || window.location.hash;
+            if (!hash || hash === '#' || hash === '#_=_') {
+                hash = '#home';
+            }
+
+            const targetId = hash.replace('#', '');
             const sections = document.querySelectorAll('.spa-section');
-            
-            function showSection(hash) {
-                if (!hash || hash === '#') hash = '#home';
-                
-                // Clean hash string
-                const targetId = hash.replace('#', '');
-                let targetSec = document.getElementById(targetId);
-                if (!targetSec) {
-                    targetSec = document.getElementById('home');
-                    hash = '#home';
+            let matched = false;
+
+            sections.forEach(sec => {
+                if (sec.id === targetId) {
+                    sec.style.setProperty('display', 'block', 'important');
+                    sec.style.setProperty('opacity', '1', 'important');
+                    sec.classList.add('active');
+                    matched = true;
+                } else {
+                    sec.style.setProperty('display', 'none', 'important');
+                    sec.style.setProperty('opacity', '0', 'important');
+                    sec.classList.remove('active');
                 }
-                
-                // Hide all sections, show target section
-                sections.forEach(sec => {
-                    if (sec.id === targetSec.id) {
-                        sec.style.setProperty('display', 'block', 'important');
-                        sec.style.setProperty('opacity', '1', 'important');
-                        sec.classList.add('active');
-                    } else {
-                        sec.style.setProperty('display', 'none', 'important');
-                        sec.style.setProperty('opacity', '0', 'important');
-                        sec.classList.remove('active');
-                    }
-                });
-                
-                // Scroll to top
-                window.scrollTo(0, 0);
-                
-                // Update active state on nav links
-                document.querySelectorAll('.nav-item').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href === hash || (hash !== '#home' && href === '#notarization' && ['#notarization', '#realestate', '#wills', '#ila', '#drafting'].includes(hash))) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
+            });
 
-                // Update active state in service subnav
-                document.querySelectorAll('.service-subnav-item').forEach(link => {
-                    if (link.getAttribute('href') === hash) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
+            if (!matched) {
+                const homeSec = document.getElementById('home');
+                if (homeSec) {
+                    homeSec.style.setProperty('display', 'block', 'important');
+                    homeSec.style.setProperty('opacity', '1', 'important');
+                    homeSec.classList.add('active');
+                }
+                hash = '#home';
+            }
 
-                // Reveal elements inside target section
-                if (targetSec) {
-                    targetSec.querySelectorAll('.reveal, .stagger-children').forEach(el => {
-                        el.classList.add('revealed');
-                    });
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Update navbar active link styling
+            document.querySelectorAll('.nav-item').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === hash || (hash !== '#home' && href === '#notarization' && ['#notarization', '#realestate', '#wills', '#ila', '#drafting'].includes(hash))) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Update active state in service subnav
+            document.querySelectorAll('.service-subnav-item').forEach(link => {
+                if (link.getAttribute('href') === hash) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Close mobile menu and dropdowns
+            const navMenu = document.querySelector('.nav-links');
+            if (navMenu) navMenu.classList.remove('active');
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+
+            // Reveal elements inside target section
+            const activeSec = document.querySelector('.spa-section.active');
+            if (activeSec) {
+                activeSec.querySelectorAll('.reveal, .stagger-children').forEach(el => {
+                    el.classList.add('revealed');
+                });
+            }
+        }
+
+        // Global Click Interceptor & Router
+        document.addEventListener('click', (e) => {
+            const toggle = e.target.closest('.dropdown-toggle');
+            if (toggle) {
+                e.preventDefault();
+                e.stopPropagation();
+                const dropdown = toggle.closest('.dropdown');
+                if (dropdown) dropdown.classList.toggle('open');
+                return;
+            }
+
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+            }
+
+            const link = e.target.closest('a[href^="#"]');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && href !== '#' && href !== 'javascript:void(0)') {
+                    e.preventDefault();
+                    if (window.location.hash !== href) {
+                        history.pushState(null, null, href);
+                    }
+                    navigateToSection(href);
                 }
             }
-            
-            // --- Global Click Delegation ---
-            document.addEventListener('click', (e) => {
-                // Dropdown Toggle Click
-                const toggle = e.target.closest('.dropdown-toggle');
-                if (toggle) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const dropdown = toggle.closest('.dropdown');
-                    if (dropdown) {
-                        dropdown.classList.toggle('open');
-                    }
-                    return;
-                }
+        });
 
-                // Close dropdown if clicked outside
-                if (!e.target.closest('.dropdown')) {
-                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-                }
+        window.addEventListener('hashchange', () => navigateToSection());
+        window.addEventListener('popstate', () => navigateToSection());
+        window.addEventListener('load', () => navigateToSection());
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateToSection();
 
-                // SPA Link Clicks
-                const link = e.target.closest('a[href^="#"], .nav-item[href^="#"], .service-subnav-item[href^="#"], .btn[href^="#"], .footer-links a[href^="#"]');
-                if (link) {
-                    const hash = link.getAttribute('href');
-                    if (hash && hash !== '#' && hash !== 'javascript:void(0)') {
-                        e.preventDefault();
-                        history.pushState(null, null, hash);
-                        showSection(hash);
-
-                        // Close mobile menu and dropdowns
-                        const navMenu = document.querySelector('.nav-links');
-                        if (navMenu) navMenu.classList.remove('active');
-                        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-                    }
-                }
-            });
-
-            // Handle browser back/forward buttons
-            window.addEventListener('popstate', () => {
-                showSection(window.location.hash);
-            });
-            
-            // Initial Section Load
-            showSection(window.location.hash);
-
-            // --- Mobile Menu Toggle ---
+            // Mobile Menu Controls
             const hamburger = document.querySelector('.hamburger');
             const closeMenu = document.querySelector('.close-menu');
             const navMenu = document.querySelector('.nav-links');
@@ -2037,83 +2038,34 @@
                     if (navMenu) navMenu.classList.add('active');
                 });
             }
-            
+
             if (closeMenu) {
                 closeMenu.addEventListener('click', () => {
                     if (navMenu) navMenu.classList.remove('active');
                 });
             }
 
-
-            // --- Accordion (FAQ) Logic ---
+            // Accordion (FAQ) Logic
             const accordionHeaders = document.querySelectorAll('.accordion-header');
-            
             accordionHeaders.forEach(header => {
                 header.addEventListener('click', function() {
                     const content = this.nextElementSibling;
                     const icon = this.querySelector('i');
-                    
-                    // Toggle current
                     if (content.style.maxHeight) {
                         content.style.maxHeight = null;
-                        icon.classList.remove('fa-chevron-up');
-                        icon.classList.add('fa-chevron-down');
+                        if (icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
                     } else {
-                        // Close others
                         document.querySelectorAll('.accordion-content').forEach(item => item.style.maxHeight = null);
                         document.querySelectorAll('.accordion-header i').forEach(i => {
-                            i.classList.remove('fa-chevron-up');
-                            i.classList.add('fa-chevron-down');
+                            i.classList.remove('fa-chevron-up'); i.classList.add('fa-chevron-down');
                         });
-                        
-                        // Open clicked
                         content.style.maxHeight = content.scrollHeight + "px";
-                        icon.classList.remove('fa-chevron-down');
-                        icon.classList.add('fa-chevron-up');
+                        if (icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
                     }
                 });
             });
 
-
-            // --- Scroll Reveal Animations ---
-            function triggerRevealInSection(section) {
-                // Reset and re-trigger reveals for elements in the active section
-                const revealEls = section.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
-                revealEls.forEach(el => {
-                    el.classList.remove('revealed');
-                });
-                // Stagger the reveal with a small delay
-                setTimeout(() => {
-                    revealEls.forEach((el, i) => {
-                        setTimeout(() => {
-                            el.classList.add('revealed');
-                        }, i * 100);
-                    });
-                }, 100);
-            }
-
-            // IntersectionObserver for scroll-triggered animations
-            const scrollObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-            // Observe all reveal elements
-            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children').forEach(el => {
-                scrollObserver.observe(el);
-            });
-
-            // Trigger initial reveals for the active section
-            const activeSection = document.querySelector('.spa-section.active');
-            if (activeSection) {
-                triggerRevealInSection(activeSection);
-            }
-
-
-            // --- Smooth counter animation for pricing ---
+            // Smooth counter animation for pricing
             function animateCounter(el, target, duration) {
                 let start = 0;
                 const step = target / (duration / 16);
@@ -2129,7 +2081,6 @@
                 update();
             }
 
-            // Observe price tag for animation
             const priceTag = document.querySelector('.price-tag');
             if (priceTag) {
                 const priceObserver = new IntersectionObserver((entries) => {
@@ -2140,7 +2091,10 @@
                         }
                     });
                 }, { threshold: 0.5 });
-                // --- Automatic Mailto Form Handler for kitchenernotary@hotmail.com ---
+                priceObserver.observe(priceTag);
+            }
+
+            // Automatic Mailto Form Handler for kitchenernotary@hotmail.com
             document.querySelectorAll('form').forEach(form => {
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -2195,7 +2149,6 @@
                     form.reset();
                 }, 800);
             }
-
         });
     </script>
 </body>
