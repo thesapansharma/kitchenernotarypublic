@@ -678,25 +678,108 @@
         .accordion-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
         .accordion-content li { margin-bottom: 0.5rem; }
 
-        /* Testimonials */
-        .testimonial-card {
-            position: relative;
+        /* Testimonials Styling */
+        .sub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: #ffffff;
+            border: 1px solid #e2e8f0;
+            color: #1e3a5f;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+        }
+
+        .testimonial-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+            border: 1px solid #e2e8f0 !important;
             border-top: 4px solid #d97706 !important;
             border-radius: 20px !important;
+            padding: 2rem !important;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.3s ease;
         }
-        .testimonial-card::before {
-            content: '\f10d';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: 1.2rem; right: 1.5rem;
-            font-size: 2.5rem;
-            color: rgba(217, 119, 6, 0.15);
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12) !important;
+            border-color: #cbd5e1 !important;
         }
-        .stars { color: #f59e0b; margin-bottom: 1rem; font-size: 1rem; }
-        .testimonial-card p { color: #334155; font-style: italic; }
-        .testimonial-card h4 { color: #0f172a; font-size: 1rem; margin-top: 1.2rem; }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .client-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(30, 58, 95, 0.25);
+            flex-shrink: 0;
+        }
+
+        .client-info {
+            flex-grow: 1;
+        }
+
+        .client-info h4 {
+            font-size: 1.05rem;
+            color: #0f172a;
+            font-weight: 700;
+            margin: 0 0 0.2rem 0;
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .review-date {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .quote-bg-icon {
+            font-size: 1.8rem;
+            color: rgba(217, 119, 6, 0.2);
+        }
+
+        .testimonial-text {
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .mt-3 {
+            margin-top: 3.5rem;
+        }
 
         /* Pricing Card */
         .pricing-card {
@@ -932,7 +1015,12 @@
         .map-container iframe { width: 100%; height: 100%; border: none; }
 
         /* Section Header */
-        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 120px;
+            padding-top: 1rem;
+        }
         .section-header h2 {
             font-size: 2.6rem;
             display: inline-block;
@@ -989,7 +1077,7 @@
         <div class="top-bar-info">
             <span><i class="fas fa-envelope"></i> <a href="mailto:kitchenernotary@hotmail.com" style="color:#ffffff; text-decoration:none;">kitchenernotary@hotmail.com</a></span>
             <span class="top-bar-badge"><i class="fas fa-shield-halved"></i> Licensed LSO Lawyers</span>
-            <span><i class="fas fa-phone"></i> Call +1 289 272 7941 or 226 667 5705</span>
+            <span><i class="fas fa-phone"></i> Call <a href="tel:+12892727941" style="color: #ffffff; font-weight: 700; text-decoration: underline;">+1 289 272 7941</a> or <a href="tel:+12266675705" style="color: #ffffff; font-weight: 700; text-decoration: underline;">226 667 5705</a></span>
         </div>
     </div>
 
@@ -1113,29 +1201,69 @@
                 </div>
             </div>
 
-            <div class="section-header mt-2 reveal">
-                <h2>What Our Client Says</h2>
+            <div class="section-header mt-3 reveal">
+                <span class="sub-badge"><i class="fab fa-google" style="color: #4285f4;"></i> VERIFIED GOOGLE REVIEWS</span>
+                <h2>What Our Clients Say</h2>
             </div>
             <div class="grid-2 mb-2 stagger-children">
                 <div class="glass-card testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Very Polite and Friendly Person ... so Inexpensive services too ... No wonder he is having all this good reviews ..... No appointment needed for sure .. But I would suggest to atleast Call first to ask for instant availability ... Overall great experience .. thumps up from my side 👍👍👍 …"</p>
-                    <h4 class="mt-2">— Akansha Chouhan</h4>
+                    <div class="testimonial-header">
+                        <div class="client-avatar">AC</div>
+                        <div class="client-info">
+                            <h4>Akansha Chouhan</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="review-date">Verified Google Review</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-quote-right quote-bg-icon"></i>
+                    </div>
+                    <p class="testimonial-text">"Very Polite and Friendly Person ... so Inexpensive services too ... No wonder he is having all this good reviews ..... No appointment needed for sure .. But I would suggest to atleast Call first to ask for instant availability ... Overall great experience .. thumbs up from my side 👍👍👍"</p>
                 </div>
+
                 <div class="glass-card testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Excellent service, the best price in KW, very kind and professional, would recommend to anyone!! Come here for your legal needs!"</p>
-                    <h4 class="mt-2">— Rabs</h4>
+                    <div class="testimonial-header">
+                        <div class="client-avatar">R</div>
+                        <div class="client-info">
+                            <h4>Rabs</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="review-date">Verified Google Review</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-quote-right quote-bg-icon"></i>
+                    </div>
+                    <p class="testimonial-text">"Excellent service, the best price in KW, very kind and professional, would recommend to anyone!! Come here for your legal needs!"</p>
                 </div>
+
                 <div class="glass-card testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"He is really kind and honest person, helpful for communicative. Thanks"</p>
-                    <h4 class="mt-2">— Ky Dominique Nguyen Nhat</h4>
+                    <div class="testimonial-header">
+                        <div class="client-avatar">KD</div>
+                        <div class="client-info">
+                            <h4>Ky Dominique Nguyen Nhat</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="review-date">Verified Google Review</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-quote-right quote-bg-icon"></i>
+                    </div>
+                    <p class="testimonial-text">"He is really kind and honest person, helpful for communicative. Thanks"</p>
                 </div>
+
                 <div class="glass-card testimonial-card">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Had a great experience here. I came in to notarize my documents & other paperwork and the Lawyer was very kind and helpful :)"</p>
-                    <h4 class="mt-2">— Rachna</h4>
+                    <div class="testimonial-header">
+                        <div class="client-avatar">R</div>
+                        <div class="client-info">
+                            <h4>Rachna</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="review-date">Verified Google Review</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-quote-right quote-bg-icon"></i>
+                    </div>
+                    <p class="testimonial-text">"Had a great experience here. I came in to notarize my documents &amp; other paperwork and the Lawyer was very kind and helpful :)"</p>
                 </div>
             </div>
         </section>
@@ -1182,12 +1310,12 @@
                 <div class="glass-card text-center" style="text-align: center;">
                     <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--gold-main); margin-bottom: 1rem;"></i>
                     <h3>Email</h3>
-                    <p>info@notary.com</p>
+                    <p><a href="mailto:kitchenernotary@hotmail.com" style="color: #d97706; font-weight: 600; text-decoration: none;">kitchenernotary@hotmail.com</a></p>
                 </div>
                 <div class="glass-card text-center" style="text-align: center;">
                     <i class="fas fa-phone" style="font-size: 2.5rem; color: var(--gold-main); margin-bottom: 1rem;"></i>
                     <h3>Phone</h3>
-                    <p>289 272 7941<br>226 667 5705</p>
+                    <p><a href="tel:+12892727941" style="color: #0f172a; font-weight: 700; text-decoration: none;">+1 (289) 272-7941</a><br><a href="tel:+12266675705" style="color: #0f172a; font-weight: 700; text-decoration: none;">+1 (226) 667-5705</a></p>
                 </div>
             </div>
             
