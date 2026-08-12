@@ -442,33 +442,17 @@
             backdrop-filter: blur(12px);
         }
 
-        .hero-seal-wrapper-large {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            background: #ffffff;
-            padding: 4px;
-            box-shadow: 0 0 0 6px #d97706, 0 0 0 16px rgba(245, 158, 11, 0.35), 0 24px 54px rgba(0, 0, 0, 0.65);
-            transition: var(--transition-smooth);
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .hero-seal-wrapper-large:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 6px #fbbf24, 0 0 0 18px rgba(251, 191, 36, 0.45), 0 28px 60px rgba(0, 0, 0, 0.75);
-        }
-
-        .hero-seal-wrapper-large img {
-            width: 100%;
-            height: 100%;
+        .hero-clean-logo {
+            height: 250px;
+            width: auto;
             object-fit: contain;
-            transform: scale(1.22);
-            filter: contrast(1.1) brightness(1.04);
+            transition: var(--transition-smooth);
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.45));
+        }
+
+        .hero-clean-logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 14px 35px rgba(245, 158, 11, 0.5));
         }
 
         .hero-left-badges {
@@ -1308,7 +1292,7 @@
     <div class="top-bar">
         <div class="top-bar-info">
             <span><i class="fas fa-location-dot" style="color: #fbbf24;"></i> <a href="https://maps.google.com/?q=900+Guelph+Street+Suite+217+Kitchener+ON+N2H+5Z6" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: underline; font-weight: 600;">Visit us at : 900 Guelph Street, Suite #217, Kitchener, ON N2H 5Z6</a></span>
-            <span><i class="fas fa-clock"></i> Open Mon–Fri: 10:00 AM – 7:30 PM | Sat: By Appt</span>
+            <span><i class="fas fa-clock"></i> Open Mon–Fri: 10:00 AM – 7:00 PM | Sat: By Appt</span>
         </div>
         <div class="top-bar-info">
             <span><i class="fas fa-envelope"></i> <a href="mailto:kitchenernotary@hotmail.com" style="color:#ffffff; text-decoration:none;">kitchenernotary@hotmail.com</a></span>
@@ -1359,15 +1343,13 @@
                 <div class="hero-split-grid">
                     <!-- LEFT COLUMN: LARGE LOGO EMBLEM & TRUST STATS -->
                     <div class="hero-left-col">
-                        <div class="hero-seal-wrapper-large">
-                            <img src="logo.png" alt="Kitchener Notary Public Official Seal">
-                        </div>
+                        <img src="logo.png" alt="Kitchener Notary Public Official Seal" class="hero-clean-logo">
                         <div class="hero-left-badges">
                             <div class="hero-trust-badge gold"><i class="fas fa-walking"></i> Walk-In / No Appointment Needed</div>
                         </div>
                         <div class="hero-stats-row">
                             <div class="hero-stat-item">
-                                <span class="stat-num">10k+</span>
+                                <span class="stat-num">100k+</span>
                                 <span class="stat-lbl">Notarized Docs</span>
                             </div>
                             <div class="hero-stat-item">
