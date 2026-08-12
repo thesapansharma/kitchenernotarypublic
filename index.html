@@ -1318,7 +1318,7 @@
                 <li><a href="#home" class="nav-item">Home</a></li>
                 <li><a href="#about" class="nav-item">About</a></li>
                 <li class="dropdown">
-                    <a href="javascript:void(0)" class="nav-item dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                    <a href="#notarization" class="nav-item dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="#notarization" class="nav-item"><i class="fas fa-stamp"></i> Notarization &amp; Commissioning</a></li>
                         <li><a href="#realestate" class="nav-item"><i class="fas fa-house-chimney"></i> Real Estate Transaction</a></li>
@@ -1390,8 +1390,10 @@
                         <br>
                         <a href="#about" class="btn btn-outline">Know More About us</a>
                     </div>
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?auto=format&fit=crop&q=80" alt="Lawyer Office" style="width: 100%; border-radius: 16px; box-shadow: var(--shadow-lg);">
+                    <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: 20px; padding: 2.5rem 1.8rem; text-align: center; color: #ffffff; border: 1px solid rgba(245, 158, 11, 0.3); box-shadow: var(--shadow-lg);">
+                        <i class="fas fa-balance-scale" style="font-size: 3.5rem; color: #fbbf24; margin-bottom: 1rem;"></i>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem;">Licensed Ontario Lawyers</h3>
+                        <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Official seals &amp; signatures registered with Official Documents Services Canada for worldwide validity.</p>
                     </div>
                 </div>
             </div>
@@ -2429,7 +2431,7 @@
             const link = e.target.closest('a[href^="#"]');
             if (link) {
                 const href = link.getAttribute('href');
-                if (href && href !== '#' && href !== 'javascript:void(0)') {
+                if (href && href !== '#') {
                     e.preventDefault();
                     if (window.location.hash !== href) {
                         history.pushState(null, null, href);
